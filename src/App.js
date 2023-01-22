@@ -36,9 +36,7 @@ export default function App() {
             animate='show'
             exit='exit'
           >
-            <UserContext.Provider value={{ setUser }}>
-              <Login />
-            </UserContext.Provider>
+            <Login setUser={setUser} />
           </motion.div>
         ) : (
           <Suspense

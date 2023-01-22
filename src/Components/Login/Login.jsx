@@ -1,8 +1,6 @@
 import { nanoid } from "nanoid";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
-//Context
-import { UserContext } from "../../Context/ChatContext";
 //Scss
 import "./Login.scss";
 
@@ -10,11 +8,9 @@ function randomColor() {
   return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
 }
 
-export default function Login() {
+export default function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [color] = useState(randomColor());
-
-  const { setUser } = useContext(UserContext);
 
   function handleSubmit(e) {
     e.preventDefault();
