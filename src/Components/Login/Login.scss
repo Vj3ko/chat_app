@@ -1,0 +1,55 @@
+@use "../../StyleUtilities/colors.scss" as *;
+@use "../../StyleUtilities/breakpoints.scss" as *;
+@use "../../StyleUtilities/mixins.scss" as *;
+
+.login--container {
+  background-color: rgba($bg__grey, 0.3);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(149, 66, 232, 0.35);
+  padding: 60px 30px;
+  gap: 20px;
+
+  @include flex-layout(column, unset, unset);
+
+  input,
+  button {
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    border: 5px solid rgba(149, 66, 232, 0.35);
+    text-align: center;
+    font-weight: bold;
+    background: transparent;
+    color: $white;
+    @include width-height(100%, 40px);
+
+    @include breakpoint("medium") {
+      @include width-height(200px, 50px);
+    }
+
+    @include breakpoint("large") {
+      @include width-height(300px, 70px);
+      font-size: 30px;
+    }
+  }
+}
+
+.login__input {
+  user-select: text;
+
+  &::selection {
+    background: $selection--purple;
+  }
+}
+
+.login__btn {
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: black;
+    background: $white;
+  }
+}

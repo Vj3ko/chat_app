@@ -1,0 +1,32 @@
+@use "../../../StyleUtilities/colors.scss" as *;
+@use "../../../StyleUtilities/fonts.scss" as *;
+
+.form {
+  padding: 20px;
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+
+  &__input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    color: $bg__grey;
+    background: $msg--color;
+  }
+
+  &__btn {
+    background: rgba(149, 66, 232, 0.35);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+
+    .icon {
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@use "./StyleUtilities/fonts.scss" as *;
+@use "./StyleUtilities/mixins.scss" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #040c18;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+input {
+  font-family: $font;
+}
+
+button {
+  font-family: $font_btn;
+}
+
+.wrapper {
+  overflow: hidden;
+
+  @include flex-layout(initial, center, center);
+  @include width-height(100vw, 100vh);
+}
+
+.container {
+  @include width-height(100%, 100%);
+  @include flex-layout(initial, center, center);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}

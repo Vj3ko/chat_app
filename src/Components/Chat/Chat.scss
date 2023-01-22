@@ -1,0 +1,39 @@
+@use "../../StyleUtilities/breakpoints.scss" as *;
+@use "../../StyleUtilities/colors.scss" as *;
+@use "../../StyleUtilities/mixins.scss" as *;
+
+.chat {
+  max-width: 800px;
+  max-height: 800px;
+  box-shadow: 0 8px 32px 0 rgba(149, 66, 232, 0.35);
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  @include width-height(100%, 100%);
+  @include flex-layout(column, center, unset);
+
+  &__header {
+    position: relative;
+    z-index: 100;
+  }
+
+  &__main {
+    overflow: hidden;
+  }
+
+  &__footer {
+    background: rgba(149, 66, 232, 0.35);
+    backdrop-filter: blur(20px);
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 10px rgba($black, 0.4);
+
+    @include breakpoint("large") {
+      margin: 0;
+    }
+  }
+}

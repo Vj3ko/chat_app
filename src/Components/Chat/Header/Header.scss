@@ -1,0 +1,73 @@
+@use "../../../StyleUtilities/breakpoints.scss" as *;
+@use "../../../StyleUtilities/colors.scss" as *;
+@use "../../../StyleUtilities/fonts.scss" as *;
+@use "../../../StyleUtilities/mixins.scss" as *;
+
+.header {
+  background: rgba(149, 66, 232, 0.35);
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 3px 10px rgba($black, 0.4);
+  overflow: hidden;
+
+  @include breakpoint("large") {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 18px;
+    color: $white;
+  }
+
+  .action--container {
+    margin-top: 20px;
+
+    @include flex-layout(initial, space-between, center);
+
+    .btn {
+      font-size: 20px;
+      padding: 6px 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        animation: scale 250ms;
+      }
+    }
+  }
+}
+
+.members__list {
+  padding: 10px 0 0 20px;
+
+  &_item {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    color: $white;
+    margin: 5px 0;
+    gap: 10px;
+
+    @include flex-layout(initial, unset, center);
+
+    &--color {
+      border-radius: 50%;
+
+      @include width-height(10px, 10px);
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
