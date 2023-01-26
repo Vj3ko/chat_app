@@ -31,7 +31,7 @@ export default function Messages({ messages }) {
     }`;
 
     const memberStatusClass = `msg--item member_status ${
-      type === "member_enter" ? "member_status--join" : "member_status--leave"
+      type === "member_join" ? "member_status--join" : "member_status--leave"
     }`;
 
     const messageSentBySameUser = listEl.current.children[index - 1];

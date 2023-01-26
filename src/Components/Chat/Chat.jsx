@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 
 //Context
 import { UserContext } from "../../Context/ChatContext";
@@ -14,9 +14,66 @@ import Messages from "./Messages/Messages";
 //Animations
 import { messagesVariant } from "../../AnimationVariants/index";
 
+const ACTIONS = {
+  MESSAGE: "message",
+  MEMBER_JOIN: "member_join",
+  MEMBER_LEAVE: "member_leave",
+};
+
+function messagesReducer(messages, action) {
+  switch (action.type) {
+    case ACTIONS.MESSAGE:
+      const { data, id, member, timestamp } = action.payload.message;
+      return [
+        ...messages,
+        {
+          msg: data.message,
+          id: id,
+          type: ACTIONS.MESSAGE,
+          userInfo: {
+            id: member.clientData.id,
+            username: member.clientData.username,
+            color: member.clientData.color,
+          },
+          time: timestamp,
+        },
+      ];
+    case ACTIONS.MEMBER_JOIN:
+      const { clientData: userEntered } = action.payload.member;
+      return [
+        ...messages,
+        {
+          msg: `${userEntered.username} has joined the chat`,
+          id: nanoid(),
+          type: ACTIONS.MEMBER_JOIN,
+          userInfo: {
+            username: userEntered.username,
+            color: userEntered.color,
+          },
+        },
+      ];
+    case ACTIONS.MEMBER_LEAVE:
+      const { clientData: userLeft } = action.payload.member;
+      return [
+        ...messages,
+        {
+          msg: `${userLeft.username} has left the chat`,
+          id: nanoid(),
+          type: ACTIONS.MEMBER_LEAVE,
+          userInfo: {
+            username: userLeft.username,
+            color: userLeft.color,
+          },
+        },
+      ];
+    default:
+      return messages;
+  }
+}
+
 export default function Chat() {
   const [members, setMembers] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [messages, dispatch] = useReducer(messagesReducer, []);
 
   const { user } = useContext(UserContext);
   const { drone, setDrone } = useContext(DroneContext);
@@ -51,19 +108,7 @@ export default function Chat() {
 
         room.on("member_join", (member) => {
           setMembers((prev) => [...prev, member]);
-
-          setMessages((prev) => [
-            ...prev,
-            {
-              msg: `${member.clientData.username} has joined the chat`,
-              id: nanoid(),
-              type: "member_enter",
-              userInfo: {
-                username: member.clientData.username,
-                color: member.clientData.color,
-              },
-            },
-          ]);
+          dispatch({ type: ACTIONS.MEMBER_JOIN, payload: { member: member } });
         });
 
         room.on("member_leave", (member) => {
@@ -72,38 +117,11 @@ export default function Chat() {
               (filteredMember) => filteredMember.id !== member.id
             );
           });
-
-          setMessages((prev) => [
-            ...prev,
-            {
-              msg: `${member.clientData.username} has left the chat`,
-              id: nanoid(),
-              type: "member_leave",
-              userInfo: {
-                username: member.clientData.username,
-                color: member.clientData.color,
-              },
-            },
-          ]);
+          dispatch({ type: ACTIONS.MEMBER_LEAVE, payload: { member: member } });
         });
 
         room.on("message", (message) => {
-          const { data, id, member, timestamp } = message;
-
-          setMessages((current) => [
-            ...current,
-            {
-              msg: data.message,
-              id: id,
-              type: "message",
-              userInfo: {
-                id: member.clientData.id,
-                username: member.clientData.username,
-                color: member.clientData.color,
-              },
-              time: timestamp,
-            },
-          ]);
+          dispatch({ type: ACTIONS.MESSAGE, payload: { message: message } });
         });
       });
     }
