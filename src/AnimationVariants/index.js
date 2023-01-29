@@ -1,11 +1,11 @@
 const loginVariant = {
   hide: {
-    y: "-100vh",
+    y: '-100vh',
   },
   show: {
     y: 0,
     transition: {
-      type: "spring",
+      type: 'spring',
       mass: 0.6,
       damping: 10,
       duration: 1,
@@ -28,7 +28,8 @@ const spinnerVariant = {
     scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 1,
+      delay: 0.25,
     },
   },
 };
@@ -44,7 +45,7 @@ const chatVariant = {
     },
   },
   exit: {
-    y: "-100vh",
+    y: '-100vh',
     transition: { duration: 0.3 },
   },
 };

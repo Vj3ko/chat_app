@@ -1,5 +1,5 @@
-@use "./StyleUtilities/fonts.scss" as *;
-@use "./StyleUtilities/mixins.scss" as *;
+@use './StyleUtilities/fonts.scss' as *;
+@use './StyleUtilities/mixins.scss' as *;
 
 *,
 *::before,
@@ -10,7 +10,7 @@
 }
 
 body {
-  background: #040c18;
+  background: url(./Media/Assets/Images/chat.jpeg) center/cover;
 }
 
 h1,

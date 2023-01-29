@@ -1,33 +1,52 @@
 @use '../../../StyleUtilities/colors.scss' as *;
 @use '../../../StyleUtilities/fonts.scss' as *;
+@use '../../../StyleUtilities/breakpoints.scss' as *;
+@use '../../../StyleUtilities/mixins.scss' as *;
 
 .form {
-  padding: 20px;
+  padding: 1.25rem;
   display: flex;
   position: relative;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 
   &__input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px 0 0 5px;
-    border: none;
-    outline: none;
-    font-size: 12px;
     color: $bg__grey;
     background: $msg--color;
+    font-size: 0.75rem;
+    padding: 0.625rem;
+    flex: 1;
+    border-radius: 0.313rem 0 0 0.313rem;
+    border: none;
+    outline: none;
+
+    @include breakpoint('medium') {
+      font-size: 16px;
+    }
   }
 
   &__btn {
-    background: rgba(149, 66, 232, 0.35);
-    color: #fff;
+    background: transparent;
+    padding: 0.625rem 0.625rem;
     border: none;
-    padding: 10px 15px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 0.313rem 0.313rem 0;
+    border: 1px solid transparent;
     cursor: pointer;
+    transition: 300ms;
+    @include flex-layout(unset, center, center);
+
+    &:focus,
+    &:hover {
+      border: 1px solid $white;
+      .icon {
+        transform: scale(1.5);
+      }
+    }
 
     .icon {
-      font-size: 16px;
+      color: $white;
+      font-size: 1rem;
+      pointer-events: none;
+      transition: 200ms;
     }
   }
 }

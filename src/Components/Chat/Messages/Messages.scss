@@ -1,40 +1,41 @@
-@use "../../../StyleUtilities/breakpoints.scss" as *;
-@use "../../../StyleUtilities/colors.scss" as *;
-@use "../../../StyleUtilities/mixins.scss" as *;
+@use '../../../StyleUtilities/breakpoints.scss' as *;
+@use '../../../StyleUtilities/colors.scss' as *;
+@use '../../../StyleUtilities/mixins.scss' as *;
 
 .msg--container {
+  padding: 0.625rem;
   overflow-y: auto;
-  padding: 10px;
   scrollbar-color: $blue3 rgba($selection--blue, 0.2);
   scrollbar-width: thin;
 
   @include width-height(initial, 100%);
   @include flex-layout(column, unset, unset);
 
-  @include breakpoint("medium") {
-    padding: 20px;
+  @include breakpoint('medium') {
+    padding: 1.25rem;
   }
 
   /* width */
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 0.25rem;
   }
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: rgba($selection--blue, 0.2);
-    border-radius: 10px;
+    // background: rgba($selection--blue, 0.2);
+    background: transparent;
+    border-radius: 0.625rem;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: $blue3;
-    border-radius: 10px;
+    background: rgba($grey2, 0.5);
+    border-radius: 0.625rem;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: $blue1;
+    background: $grey2;
   }
 }
 
@@ -42,13 +43,13 @@
   @include flex-layout(column, flex-end, unset);
 
   &.member_status {
-    text-align: center;
     color: $msg--color;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 0.313rem 0.625rem;
+    margin: 0.625rem 0;
+    border-radius: 0.625rem;
     align-self: center;
-    font-size: 14px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin: 10px 0;
 
     &--join {
       background: $memberJoin--color;
@@ -60,12 +61,12 @@
   }
 
   .user {
-    margin-bottom: 3px;
+    margin-bottom: 0.188rem;
 
     @include flex-layout(column, unset, unset);
 
     & > div {
-      gap: 10px;
+      gap: 0.625rem;
 
       @include flex-layout(row-reverse, flex-end, center);
     }
@@ -73,48 +74,53 @@
     &__color {
       border-radius: 50%;
 
-      @include width-height(10px, 10px);
+      @include width-height(0.625rem, 0.625rem);
     }
 
     &__name {
-      font-size: 16px;
-      font-weight: bold;
       color: $username--color;
+      font-size: 1rem;
+      font-weight: bold;
     }
 
     &__msg {
-      word-break: break-word;
       color: $msg--color;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 3px 3px 7px rgba(rgb(37, 37, 37), 0.5);
+      font-size: 0.938rem;
+      word-break: break-word;
+      padding: 0.625rem;
+      border-radius: 0.625rem;
+      box-shadow: 0.188rem 0.188rem 0.438rem rgba(rgb(37, 37, 37), 0.5);
       user-select: text;
-      max-width: 250px;
+      max-width: 15.625rem;
       position: relative;
 
-      @include breakpoint("medium") {
-        max-width: 450px;
+      @include breakpoint('medium') {
+        max-width: 28.125rem;
+      }
+
+      @include breakpoint('xlarge') {
+        font-size: 1rem;
       }
 
       &--point {
         &::after {
-          content: "";
+          content: '';
           display: block;
           z-index: 100;
           position: absolute;
 
-          @include width-height(10px, 20px);
+          @include width-height(0.625rem, 1.25rem);
         }
       }
 
       &_time {
-        font-size: 10px;
-        margin-left: 10px;
-        position: relative;
-        top: 8px;
-        right: -2px;
-        float: right;
         color: $light__grey;
+        font-size: 0.625rem;
+        margin-left: 0.625rem;
+        position: relative;
+        top: 0.5rem;
+        right: -0.125rem;
+        float: right;
       }
 
       // when user tries to select text
@@ -140,7 +146,7 @@
           &::after {
             background: inherit;
             top: 0;
-            right: -7px;
+            right: -0.438rem;
             clip-path: polygon(0 0, 100% 0, 0 80%);
           }
         }
@@ -164,7 +170,7 @@
           &::after {
             background: inherit;
             top: 0;
-            left: -7px;
+            left: -0.438rem;
             clip-path: polygon(0 0, 100% 0, 100% 80%);
           }
         }

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 //icons
 import { GiExitDoor } from 'react-icons/gi';
+import { IoMdPerson } from 'react-icons/io';
 //Context
 import { UserContext } from '../../../Context/ChatContext';
 import { DroneContext } from '../../../Context/DroneContext';
@@ -22,23 +23,28 @@ export default function Header({ members }) {
     setUser(null);
   }
 
+  const btnStyle = `
+    ${showMembers ? 'btn active' : 'btn'}
+  `;
+
   return (
     <section className='header'>
-      <h1>Welcome to Chat, {user.username}</h1>
-      <div className='action--container'>
-        <button
-          className='btn'
-          onClick={handleMembersList}
-        >
-          Members
-        </button>
-        <button
-          onClick={handleUserLogout}
-          className='btn'
-        >
-          {/* <FontAwesomeIcon icon={faRightFromBracket} className='header__icon' /> */}
-          <GiExitDoor className='header__icon' />
-        </button>
+      <div className='header__wrapper'>
+        <h1>Welcome to Chat, {user.username}</h1>
+        <div className='action--container'>
+          <button
+            className={btnStyle}
+            onClick={handleMembersList}
+          >
+            <IoMdPerson className='header__icon' />
+          </button>
+          <button
+            onClick={handleUserLogout}
+            className='btn'
+          >
+            <GiExitDoor className='header__icon' />
+          </button>
+        </div>
       </div>
 
       {showMembers ? (
