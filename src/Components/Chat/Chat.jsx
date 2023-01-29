@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
-import { nanoid } from "nanoid";
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import { motion } from 'framer-motion';
+import { nanoid } from 'nanoid';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 
 //Context
-import { UserContext } from "../../Context/ChatContext";
-import { DroneContext } from "../../Context/DroneContext";
+import { UserContext } from '../../Context/ChatContext';
+import { DroneContext } from '../../Context/DroneContext';
 //Scss
-import "./Chat.scss";
+import './Chat.scss';
 //Components
-import Header from "./Header/Header";
-import Input from "./Input/Input";
-import Messages from "./Messages/Messages";
+import Header from './Header/Header';
+import Input from './Input/Input';
+import Messages from './Messages/Messages';
 //Animations
-import { messagesVariant } from "../../AnimationVariants/index";
+import { messagesVariant } from '../../AnimationVariants/index';
 
 const ACTIONS = {
-  MESSAGE: "message",
-  MEMBER_JOIN: "member_join",
-  MEMBER_LEAVE: "member_leave",
+  MESSAGE: 'message',
+  MEMBER_JOIN: 'member_join',
+  MEMBER_LEAVE: 'member_leave',
 };
 
 function messagesReducer(messages, action) {
@@ -80,47 +80,48 @@ export default function Chat() {
 
   function sendMessage(message) {
     drone.publish({
-      room: "observable-room",
+      room: 'observable-room',
       message: { message },
     });
   }
 
   useEffect(() => {
     if (user) {
-      const drone = new window.Scaledrone("S94RX9Gu8Xpy6oEx", {
+      const drone = new window.Scaledrone('S94RX9Gu8Xpy6oEx', {
         data: user,
       });
       setDrone(drone);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
     if (drone) {
-      drone.on("open", (error) => {
+      drone.on('open', error => {
         if (error) return console.error(error);
 
-        const room = drone.subscribe("observable-room");
+        const room = drone.subscribe('observable-room');
 
-        room.on("error", (error) => console.error(error));
-        room.on("members", (data) => {
+        room.on('error', error => console.error(error));
+        room.on('members', data => {
           setMembers([...data]);
         });
 
-        room.on("member_join", (member) => {
-          setMembers((prev) => [...prev, member]);
+        room.on('member_join', member => {
+          setMembers(prev => [...prev, member]);
           dispatch({ type: ACTIONS.MEMBER_JOIN, payload: { member: member } });
         });
 
-        room.on("member_leave", (member) => {
-          setMembers((prev) => {
+        room.on('member_leave', member => {
+          setMembers(prev => {
             return prev.filter(
-              (filteredMember) => filteredMember.id !== member.id
+              filteredMember => filteredMember.id !== member.id
             );
           });
           dispatch({ type: ACTIONS.MEMBER_LEAVE, payload: { member: member } });
         });
 
-        room.on("message", (message) => {
+        room.on('message', message => {
           dispatch({ type: ACTIONS.MESSAGE, payload: { message: message } });
         });
       });

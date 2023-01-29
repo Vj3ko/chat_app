@@ -1,5 +1,5 @@
-@use "../../../StyleUtilities/colors.scss" as *;
-@use "../../../StyleUtilities/fonts.scss" as *;
+@use '../../../StyleUtilities/colors.scss' as *;
+@use '../../../StyleUtilities/fonts.scss' as *;
 
 .form {
   padding: 20px;
@@ -24,6 +24,7 @@
     border: none;
     padding: 10px 15px;
     border-radius: 0 5px 5px 0;
+    cursor: pointer;
 
     .icon {
       font-size: 16px;
