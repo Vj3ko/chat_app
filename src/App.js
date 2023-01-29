@@ -1,23 +1,23 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { lazy, Suspense, useState } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { lazy, Suspense, useState } from 'react';
 //Scss
-import "./App.scss";
+import './App.scss';
 //Components
-import Login from "./Components/Login/Login";
-import Spinner from "./Components/Spinner/Spinner";
-import { UserContext } from "./Context/ChatContext";
-import { DroneContext } from "./Context/DroneContext";
+import Login from './Components/Login/Login';
+import Spinner from './Components/Spinner/Spinner';
+import { UserContext } from './Context/ChatContext';
+import { DroneContext } from './Context/DroneContext';
 //Animations
 import {
   chatVariant,
   loginVariant,
   spinnerVariant,
-} from "./AnimationVariants/index";
+} from './AnimationVariants/index';
 //Lazy loading component
 const Chat = lazy(() => {
   return Promise.all([
-    import("./Components/Chat/Chat"),
-    new Promise((resolve) => setTimeout(resolve, 2000)),
+    import('./Components/Chat/Chat'),
+    new Promise(resolve => setTimeout(resolve, 3000)),
   ]).then(([moduleExports]) => moduleExports);
 });
 
@@ -46,6 +46,7 @@ export default function App() {
                 key='spinner'
                 initial='hide'
                 animate='show'
+                className='container'
               >
                 <Spinner />
               </motion.div>
