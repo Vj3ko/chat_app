@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 
@@ -74,7 +74,7 @@ function messagesReducer(messages, action) {
 export default function Chat() {
   const [members, setMembers] = useState([]);
   const [messages, dispatch] = useReducer(messagesReducer, []);
-
+  const [closeChat, setCloseChat] = useState(false);
   const { user } = useContext(UserContext);
   const { drone, setDrone } = useContext(DroneContext);
 
@@ -129,21 +129,38 @@ export default function Chat() {
   }, [user, drone, members]);
 
   return (
-    <div className='chat'>
+    <motion.div
+      className='chat'
+      animate={{
+        boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.7)',
+      }}
+      exit={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)' }}
+    >
       <header className='chat__header'>
-        <Header members={members} />
+        <Header
+          members={members}
+          setCloseChat={setCloseChat}
+        />
       </header>
-      <motion.main
-        className='chat__main'
-        variants={messagesVariant}
-        initial='hidden'
-        animate='animate'
-      >
-        <Messages messages={messages} />
-      </motion.main>
+
+      <AnimatePresence>
+        {!closeChat ? (
+          <motion.main
+            className='chat__main'
+            variants={messagesVariant}
+            key='main'
+            initial='hidden'
+            animate='animate'
+            exit='exit'
+          >
+            <Messages messages={messages} />
+          </motion.main>
+        ) : null}
+      </AnimatePresence>
+
       <footer className='chat__footer'>
         <Input sendMessage={sendMessage} />
       </footer>
-    </div>
+    </motion.div>
   );
 }

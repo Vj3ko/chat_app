@@ -5,8 +5,9 @@
 .msg--container {
   padding: 0.625rem;
   overflow-y: auto;
-  scrollbar-color: $blue3 rgba($selection--blue, 0.2);
+  scrollbar-color: $scrollbar--color rgba($selection--blue, 0.2);
   scrollbar-width: thin;
+  background: rgba($black, 0.4);
 
   @include width-height(initial, 100%);
   @include flex-layout(column, unset, unset);
@@ -43,7 +44,7 @@
   @include flex-layout(column, flex-end, unset);
 
   &.member_status {
-    color: $msg--color;
+    color: $white;
     font-size: 0.875rem;
     text-align: center;
     padding: 0.313rem 0.625rem;
@@ -84,7 +85,7 @@
     }
 
     &__msg {
-      color: $msg--color;
+      color: $white;
       font-size: 0.938rem;
       word-break: break-word;
       padding: 0.625rem;

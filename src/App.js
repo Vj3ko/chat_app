@@ -8,11 +8,7 @@ import Spinner from './Components/Spinner/Spinner';
 import { UserContext } from './Context/ChatContext';
 import { DroneContext } from './Context/DroneContext';
 //Animations
-import {
-  chatVariant,
-  loginVariant,
-  spinnerVariant,
-} from './AnimationVariants/index';
+import { chatVariant, scaleVariant } from './AnimationVariants/index';
 //Lazy loading component
 const Chat = lazy(() => {
   return Promise.all([
@@ -30,7 +26,7 @@ export default function App() {
       <AnimatePresence mode='wait'>
         {!user ? (
           <motion.div
-            variants={loginVariant}
+            variants={scaleVariant}
             key='login'
             initial='hide'
             animate='show'
@@ -42,11 +38,10 @@ export default function App() {
           <Suspense
             fallback={
               <motion.div
-                variants={spinnerVariant}
+                variants={scaleVariant}
                 key='spinner'
                 initial='hide'
                 animate='show'
-                className='container'
               >
                 <Spinner />
               </motion.div>

@@ -1,15 +1,13 @@
-const loginVariant = {
+const scaleVariant = {
   hide: {
-    y: '-100vh',
+    scale: 0,
+    opacity: 0,
   },
   show: {
-    y: 0,
+    scale: 1,
+    opacity: 1,
     transition: {
-      type: 'spring',
-      mass: 0.6,
-      damping: 10,
-      duration: 1,
-      delay: 0.3,
+      duration: 0.5,
     },
   },
   exit: {
@@ -19,34 +17,22 @@ const loginVariant = {
   },
 };
 
-const spinnerVariant = {
-  hide: {
-    scale: 0,
-    opacity: 0,
-  },
-  show: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      delay: 0.25,
-    },
-  },
-};
-
 const chatVariant = {
   hide: {
     opacity: 0,
+    scale: 0,
   },
   show: {
     opacity: 1,
+    scale: 1,
     transition: {
       duration: 0.5,
     },
   },
   exit: {
-    y: '-100vh',
-    transition: { duration: 0.3 },
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 0.3, delay: 0.2 },
   },
 };
 
@@ -58,6 +44,10 @@ const messagesVariant = {
     flex: 1,
     transition: { duration: 0.6 },
   },
+  exit: {
+    flex: 0,
+    transition: { duration: 0.6 },
+  },
 };
 
-export { loginVariant, spinnerVariant, chatVariant, messagesVariant };
+export { scaleVariant, chatVariant, messagesVariant };

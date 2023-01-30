@@ -4,13 +4,13 @@
 
 .chat {
   max-width: 50rem;
-  max-height: 50rem;
-  box-shadow: 0 0.5rem 2rem 0 rgba($black, 0.7);
   border-radius: 0.625rem;
-  background: rgba($black, 0.4);
 
   @include width-height(100%, 100%);
   @include flex-layout(column, center, unset);
+  @include breakpoint('medium') {
+    max-height: 50rem;
+  }
 
   &__header {
     position: relative;

@@ -18,6 +18,10 @@
   h1 {
     font-size: 1rem;
     color: $white;
+
+    @include breakpoint('medium') {
+      font-size: 1.25rem;
+    }
   }
 
   .action--container {

@@ -1,7 +1,11 @@
 import './Spinner.scss';
 
 function Spinner() {
-  return <span className='loader'></span>;
+  return (
+    <div className='spinner--wrapper'>
+      <span className='spinner'></span>
+    </div>
+  );
 }
 
 export default Spinner;

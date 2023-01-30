@@ -8,7 +8,7 @@ import { DroneContext } from '../../../Context/DroneContext';
 //Scss
 import './Header.scss';
 
-export default function Header({ members }) {
+export default function Header({ members, setCloseChat }) {
   const [showMembers, setShowMembers] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const { drone, setDrone } = useContext(DroneContext);
@@ -18,9 +18,12 @@ export default function Header({ members }) {
   }
 
   function handleUserLogout() {
-    drone.close();
-    setDrone(null);
-    setUser(null);
+    setCloseChat(prev => !prev);
+    setTimeout(() => {
+      drone.close();
+      setDrone(null);
+      setUser(null);
+    }, 300);
   }
 
   const btnStyle = `

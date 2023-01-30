@@ -22,7 +22,7 @@
     border-radius: 0.313rem;
     outline: none;
     border: none;
-    border: 0.125rem solid rgba(184, 179, 179, 0.6);
+    border: 0.125rem solid $grey2;
     @include width-height(100%, 2.5rem);
 
     @include breakpoint('medium') {
@@ -40,7 +40,7 @@
   user-select: text;
 
   &::selection {
-    background: $selection--purple;
+    background: $selection--blue;
   }
 }
 
@@ -50,7 +50,7 @@
 
   &:hover,
   &:focus {
-    color: black;
+    color: $black;
     background: $white;
   }
 }

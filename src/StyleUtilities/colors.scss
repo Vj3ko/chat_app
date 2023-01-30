@@ -1,22 +1,19 @@
-//unused colors
-$blue1: #00a8ff;
-$blue3: #40739e;
+//scrollbar color for mozilla
+$scrollbar--color: #40739e;
 
 //primary colors
 $white: #ffffff;
 $black: #000000;
-$bg__grey: #2f3640;
-$light__grey: #dcdde1;
-$grey2: #718093;
+$bg__grey: #2f3640; // input color
+$light__grey: #dcdde1; // messages timestamp
+$grey2: #718093; // login borders and messages scrollbar
 
 //msg colors
 $username--color: #7f8fa6;
-$currentMember__msg--color: #0097e6;
-$otherMember__msg--color: hsl(295deg 76% 51%);
-$memberJoin--color: hsl(220deg 76% 51%);
-$memberLeave--color: hsl(284deg 70% 73%);
-$msg--color: #f5f6fa;
+$currentMember__msg--color: #35436b;
+$otherMember__msg--color: #31383f;
+$memberJoin--color: #07473e;
+$memberLeave--color: #260747;
 
 //text selection colors
 $selection--blue: #487eb0;
-$selection--purple: #9c88ff;
