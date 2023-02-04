@@ -92,7 +92,6 @@ export default function Chat() {
       });
       setDrone(drone);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
@@ -133,8 +132,11 @@ export default function Chat() {
       className='chat'
       animate={{
         boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.7)',
+        transition: { delay: 0.8 },
       }}
-      exit={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)' }}
+      exit={{
+        boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)',
+      }}
     >
       <header className='chat__header'>
         <Header
