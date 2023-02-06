@@ -84,15 +84,12 @@ export default function Chat() {
       message: { message },
     });
   }
-
   useEffect(() => {
-    if (user) {
-      const drone = new window.Scaledrone('S94RX9Gu8Xpy6oEx', {
-        data: user,
-      });
-      setDrone(drone);
-    }
-  }, [user]);
+    const drone = new window.Scaledrone('S94RX9Gu8Xpy6oEx', {
+      data: user,
+    });
+    setDrone(drone);
+  }, []);
 
   useEffect(() => {
     if (drone) {
