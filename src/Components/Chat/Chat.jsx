@@ -14,6 +14,9 @@ import Messages from './Messages/Messages';
 //Animations
 import { messagesVariant } from '../../AnimationVariants/index';
 
+const SCALEDRONE_KEY = 'S94RX9Gu8Xpy6oEx';
+const ROOM_NAME = 'observable-room';
+
 const ACTIONS = {
   MESSAGE: 'message',
   MEMBER_JOIN: 'member_join',
@@ -78,14 +81,8 @@ export default function Chat() {
   const { user } = useContext(UserContext);
   const { drone, setDrone } = useContext(DroneContext);
 
-  function sendMessage(message) {
-    drone.publish({
-      room: 'observable-room',
-      message: { message },
-    });
-  }
   useEffect(() => {
-    const drone = new window.Scaledrone('S94RX9Gu8Xpy6oEx', {
+    const drone = new window.Scaledrone(SCALEDRONE_KEY, {
       data: user,
     });
     setDrone(drone);
@@ -96,7 +93,7 @@ export default function Chat() {
       drone.on('open', error => {
         if (error) return console.error(error);
 
-        const room = drone.subscribe('observable-room');
+        const room = drone.subscribe(ROOM_NAME);
 
         room.on('error', error => console.error(error));
         room.on('members', data => {
@@ -104,7 +101,7 @@ export default function Chat() {
         });
 
         room.on('member_join', member => {
-          setMembers(prev => [...prev, member]);
+          setMembers(prev => [member, ...prev]);
           dispatch({ type: ACTIONS.MEMBER_JOIN, payload: { member: member } });
         });
 
@@ -123,6 +120,13 @@ export default function Chat() {
       });
     }
   }, [user, drone, members]);
+
+  function sendMessage(message) {
+    drone.publish({
+      room: ROOM_NAME,
+      message: { message },
+    });
+  }
 
   return (
     <motion.div

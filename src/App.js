@@ -10,11 +10,12 @@ import { DroneContext } from './Context/DroneContext';
 //Animations
 import { chatVariant, scaleVariant } from './AnimationVariants/index';
 //Lazy loading component
-const Chat = lazy(() => {
-  return Promise.all([
+const Chat = lazy(async () => {
+  const [moduleExports] = await Promise.all([
     import('./Components/Chat/Chat'),
     new Promise(resolve => setTimeout(resolve, 3000)),
-  ]).then(([moduleExports]) => moduleExports);
+  ]);
+  return moduleExports;
 });
 
 export default function App() {
