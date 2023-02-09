@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 //Scss
 import './App.scss';
 //Components
@@ -21,6 +21,14 @@ const Chat = lazy(async () => {
 export default function App() {
   const [user, setUser] = useState(null);
   const [drone, setDrone] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      document.title = `Chat | ${user.username}`;
+    } else {
+      document.title = 'Chat App';
+    }
+  }, [user]);
 
   return (
     <div className='wrapper'>
