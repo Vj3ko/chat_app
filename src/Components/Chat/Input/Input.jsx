@@ -19,23 +19,10 @@ export default function ChatSendMsg({ sendMessage }) {
 
   return (
     <>
-      <form
-        action=''
-        onSubmit={onSubmit}
-        className='form'
-      >
-        <input
-          ref={inputEl}
-          type='text'
-          value={text}
-          onChange={e => setText(e.target.value)}
-          className='form__input'
-        />
+      <form action='' onSubmit={onSubmit} className='form'>
+        <input ref={inputEl} type='text' value={text} onChange={e => setText(e.target.value)} className='form__input' />
 
-        <button
-          type='submit'
-          className='form__btn'
-        >
+        <button type='submit' className='form__btn'>
           <MdSend className='icon' />
         </button>
       </form>

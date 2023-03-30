@@ -41,6 +41,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "postcss": "^8.4.21",
+    "postcss-100vh-fix": "^1.0.2"
   }
 }

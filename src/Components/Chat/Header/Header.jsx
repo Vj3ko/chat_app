@@ -35,16 +35,10 @@ export default function Header({ members, setCloseChat }) {
       <div className='header__wrapper'>
         <h1>Welcome to Chat, {user.username}</h1>
         <div className='action--container'>
-          <button
-            className={btnStyle}
-            onClick={handleMembersList}
-          >
+          <button className={btnStyle} onClick={handleMembersList} >
             <IoMdPerson className='header__icon' />
           </button>
-          <button
-            onClick={handleUserLogout}
-            className='btn'
-          >
+          <button onClick={handleUserLogout} className='btn' >
             <GiExitDoor className='header__icon' />
           </button>
         </div>
@@ -53,14 +47,8 @@ export default function Header({ members, setCloseChat }) {
       {showMembers ? (
         <ul className='members__list'>
           {members.map(member => (
-            <li
-              key={member.id}
-              className='members__list_item'
-            >
-              <span
-                className='members__list_item--color'
-                style={{ backgroundColor: member.clientData.color }}
-              />
+            <li key={member.id} className='members__list_item'>
+              <span className='members__list_item--color' style={{ backgroundColor: member.clientData.color }} />
               <p>{member.clientData.username}</p>
             </li>
           ))}

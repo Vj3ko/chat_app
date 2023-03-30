@@ -5,7 +5,6 @@
 .chat {
   max-width: 50rem;
   border-radius: 0.625rem;
-
   @include width-height(100%, 100%);
   @include flex-layout(column, center, unset);
   @include breakpoint('medium') {

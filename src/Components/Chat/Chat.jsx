@@ -21,6 +21,7 @@ const ACTIONS = {
   MESSAGE: 'message',
   MEMBER_JOIN: 'member_join',
   MEMBER_LEAVE: 'member_leave',
+  HISTORY: 'history',
 };
 
 function messagesReducer(messages, action) {
@@ -69,6 +70,22 @@ function messagesReducer(messages, action) {
           },
         },
       ];
+    case ACTIONS.HISTORY:
+      const { data: message, timestamp: time } = action.payload.message;
+      return [
+        ...messages,
+        {
+          msg: message.message,
+          id: nanoid(),
+          type: ACTIONS.HISTORY,
+          userInfo: {
+            username: '',
+            color: '',
+          },
+          time: time,
+        },
+      ];
+
     default:
       return messages;
   }
@@ -93,7 +110,9 @@ export default function Chat() {
       drone.on('open', error => {
         if (error) return console.error(error);
 
-        const room = drone.subscribe(ROOM_NAME);
+        const room = drone.subscribe(ROOM_NAME, {
+          historyCount: 10,
+        });
 
         room.on('error', error => console.error(error));
         room.on('members', data => {
@@ -117,6 +136,13 @@ export default function Chat() {
         room.on('message', message => {
           dispatch({ type: ACTIONS.MESSAGE, payload: { message: message } });
         });
+
+        room.on('history_message', message => {
+          dispatch({
+            type: ACTIONS.HISTORY,
+            payload: { message: message },
+          });
+        });
       });
     }
   }, [user, drone, members]);
@@ -129,33 +155,14 @@ export default function Chat() {
   }
 
   return (
-    <motion.div
-      className='chat'
-      animate={{
-        boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.7)',
-        transition: { delay: 0.8 },
-      }}
-      exit={{
-        boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)',
-      }}
-    >
+    <motion.div className='chat' animate={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.7)', transition: { delay: 0.8 } }} exit={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)', }}>
       <header className='chat__header'>
-        <Header
-          members={members}
-          setCloseChat={setCloseChat}
-        />
+        <Header members={members} setCloseChat={setCloseChat} />
       </header>
 
       <AnimatePresence>
         {!closeChat ? (
-          <motion.main
-            className='chat__main'
-            variants={messagesVariant}
-            key='main'
-            initial='hidden'
-            animate='animate'
-            exit='exit'
-          >
+          <motion.main className='chat__main' variants={messagesVariant} key='main' initial='hidden' animate='animate' exit='exit'>
             <Messages messages={messages} />
           </motion.main>
         ) : null}

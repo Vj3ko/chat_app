@@ -10,7 +10,7 @@
 }
 
 body {
-  background: url(./Media/Assets/Images/chat.jpeg) center/cover;
+  background: url(./Assets/Images/chat.jpeg) center/cover;
 }
 
 h1,
@@ -34,7 +34,8 @@ button {
   overflow: hidden;
 
   @include flex-layout(initial, center, center);
-  @include width-height(100vw, 100vh);
+  @include width-height(100%, 100vh);
+  height: 100svh;
 }
 
 .container {

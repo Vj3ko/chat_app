@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 //Scss
 import './App.scss';
 //Components
@@ -9,6 +9,7 @@ import { UserContext } from './Context/ChatContext';
 import { DroneContext } from './Context/DroneContext';
 //Animations
 import { chatVariant, scaleVariant } from './AnimationVariants/index';
+
 //Lazy loading component
 const Chat = lazy(async () => {
   const [moduleExports] = await Promise.all([
@@ -34,36 +35,18 @@ export default function App() {
     <div className='wrapper'>
       <AnimatePresence mode='wait'>
         {!user ? (
-          <motion.div
-            variants={scaleVariant}
-            key='login'
-            initial='hide'
-            animate='show'
-            exit='exit'
-          >
+          <motion.div variants={scaleVariant} key='login' initial='hide' animate='show' exit='exit'>
             <Login setUser={setUser} />
           </motion.div>
         ) : (
           <Suspense
             fallback={
-              <motion.div
-                variants={scaleVariant}
-                key='spinner'
-                initial='hide'
-                animate='show'
-              >
+              <motion.div variants={scaleVariant} key='spinner' initial='hide' animate='show'>
                 <Spinner />
               </motion.div>
             }
           >
-            <motion.div
-              variants={chatVariant}
-              key='chat'
-              initial='hide'
-              animate='show'
-              exit='exit'
-              className='container'
-            >
+            <motion.div variants={chatVariant} key='chat' initial='hide' animate='show' exit='exit' className='container'>
               <UserContext.Provider value={{ user, setUser }}>
                 <DroneContext.Provider value={{ drone, setDrone }}>
                   <Chat />
