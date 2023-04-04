@@ -48,4 +48,6 @@ Start the app
 
 [Live preview of a Chat App](https://chat-app-6p8.pages.dev/)
 
+## Author
+
 <p><a href="https://www.linkedin.com/in/vdizdar/"><img align="center" src="https://i.ibb.co/6Jw1g19/linkedin-icon.png" alt="LinkedIn" height="auto" width="30"/></a>&nbsp;
