@@ -8,6 +8,9 @@
 This is an application that simulates chat using [Scaledrone](https://https://www.scaledrone.com/)
 
 In the chat u will be able to send messages to each other using a Nickname u set on login page.
+U will be able to see when someone logged in or logged out of the chat. You can show or hide members list.
+Every user will get a random color next to a name.
+Enjoy chatting :)
 
 ### Built with
 
@@ -41,6 +44,6 @@ Install dependencies
   npm start
 ```
 
-[PREVIEW LIVE](https://chat-app-6p8.pages.dev/)
+[Live preview of a Chat App](https://chat-app-6p8.pages.dev/)
 
 <p><a href="https://www.linkedin.com/in/vdizdar/"><img align="center" src="https://i.ibb.co/6Jw1g19/linkedin-icon.png" alt="LinkedIn" height="auto" width="30"/></a>&nbsp;
