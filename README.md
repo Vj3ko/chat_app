@@ -1,1 +1,46 @@
+# Chat Application
+
+![Screenshot of chat login](design/ss-1.png)
+![Screenshot of chat messaging](design/ss-2.png)
+
+## Overview
+
+This is an application that simulates chat using [Scaledrone](https://https://www.scaledrone.com/)
+
+In the chat u will be able to send messages to each other using a Nickname u set on login page.
+
+### Built with
+
+- JSX
+- SCSS
+- React
+- Framer motion (animations)
+
+Clone the project
+
+```bash
+  git clone https://github.com/Vj3ko/chat_app
+```
+
+Go to the project directory
+
+```bash
+  cd chat_app
+```
+
+Register on Scaledrone service and get a KEY.
+Change the KEY using your own, located in src/Components/Chat/Chat.jsx
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+```bash
+  npm start
+```
+
 [PREVIEW LIVE](https://chat-app-6p8.pages.dev/)
+
+<p><a href="https://www.linkedin.com/in/vdizdar/"><img align="center" src="https://i.ibb.co/6Jw1g19/linkedin-icon.png" alt="LinkedIn" height="auto" width="30"/></a>&nbsp;
