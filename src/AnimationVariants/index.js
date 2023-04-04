@@ -50,4 +50,21 @@ const messagesVariant = {
   },
 };
 
-export { scaleVariant, chatVariant, messagesVariant };
+const messageItemVariant = {
+  hidden: { opacity: 0, scale: 0.8 },
+  show: { opacity: 1, scale: 1, transition: { opacity: { duration: .5 } } },
+};
+
+const memberVariant = {
+  hide: { opacity: 0, height: 0 },
+  show: { opacity: 1, height: "auto" },
+  exit: { opacity: 0, height: 0 },
+  transition: {
+    opacity: { duration: .2 },
+    height: { duration: .4 }
+  }
+
+}
+
+export { scaleVariant, chatVariant, messagesVariant, messageItemVariant, memberVariant };
+

@@ -178,4 +178,8 @@
       }
     }
   }
+
+  &.history .user__msg {
+    background: $history__msg--color;
+  }
 }

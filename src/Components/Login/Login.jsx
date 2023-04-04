@@ -10,29 +10,19 @@ function randomColor() {
 
 export default function Login({ setUser }) {
   const [username, setUsername] = useState('');
-  const [color] = useState(randomColor());
 
   function handleSubmit(e) {
     e.preventDefault();
+
     if (username && username.replace(/\s/g, '').length > 0) {
-      setUser({ username, color, id: nanoid() });
+      setUser({ username, color: randomColor(), id: nanoid() });
       setUsername('');
     }
   }
 
   return (
-    <form
-      className='login--container'
-      onSubmit={handleSubmit}
-    >
-      <input
-        className='login__input'
-        type='text'
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-        autoFocus
-        maxLength={15}
-      />
+    <form className='login--container' onSubmit={handleSubmit}>
+      <input className='login__input' type='text' value={username} onChange={e => setUsername(e.target.value)} autoFocus maxLength={15} />
       <button className='login__btn'>JOIN</button>
     </form>
   );

@@ -5,12 +5,15 @@ import React, { useContext, useEffect, useReducer, useState } from 'react';
 //Context
 import { UserContext } from '../../Context/ChatContext';
 import { DroneContext } from '../../Context/DroneContext';
+
 //Scss
 import './Chat.scss';
+
 //Components
 import Header from './Header/Header';
 import Input from './Input/Input';
 import Messages from './Messages/Messages';
+
 //Animations
 import { messagesVariant } from '../../AnimationVariants/index';
 
@@ -111,7 +114,7 @@ export default function Chat() {
         if (error) return console.error(error);
 
         const room = drone.subscribe(ROOM_NAME, {
-          historyCount: 10,
+          historyCount: 25,
         });
 
         room.on('error', error => console.error(error));
@@ -154,10 +157,14 @@ export default function Chat() {
     });
   }
 
+  function handleCloseChat() {
+    setCloseChat(!closeChat);
+  }
+
   return (
     <motion.div className='chat' animate={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.7)', transition: { delay: 0.8 } }} exit={{ boxShadow: '0 0.5rem 2rem 0 rgba(0,0,0, 0.0)', }}>
       <header className='chat__header'>
-        <Header members={members} setCloseChat={setCloseChat} />
+        <Header members={members} handleCloseChat={handleCloseChat} />
       </header>
 
       <AnimatePresence>
