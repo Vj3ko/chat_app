@@ -40,6 +40,8 @@ Install dependencies
   npm install
 ```
 
+Start the app
+
 ```bash
   npm start
 ```
