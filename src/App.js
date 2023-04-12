@@ -39,7 +39,9 @@ export default function App() {
       <AnimatePresence mode='wait'>
         {!user ? (
           <motion.div variants={scaleVariant} key='login' initial='hide' animate='show' exit='exit'>
-            <Login setUser={setUser} />
+            <UserContext.Provider value={{ setUser }}>
+              <Login />
+            </UserContext.Provider>
           </motion.div>
         ) : (
           <Suspense fallback={<motion.div variants={scaleVariant} key='spinner' initial='hide' animate='show'><Spinner /></motion.div>}>
