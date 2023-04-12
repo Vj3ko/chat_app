@@ -7,13 +7,15 @@ import './App.scss';
 //Components
 import Login from './Components/Login/Login';
 import Spinner from './Components/Spinner/Spinner';
+
+//Context
 import { UserContext } from './Context/ChatContext';
 import { DroneContext } from './Context/DroneContext';
 
 //Animations
 import { chatVariant, scaleVariant } from './AnimationVariants';
 
-//Lazy loading component
+//Lazy loading Chat component
 const Chat = lazy(async () => {
   const [moduleExports] = await Promise.all([
     import('./Components/Chat/Chat'),

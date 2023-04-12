@@ -17,8 +17,11 @@ import Messages from './Messages/Messages';
 //Animations
 import { messagesVariant } from '../../AnimationVariants/index';
 
-const SCALEDRONE_KEY = 'S94RX9Gu8Xpy6oEx';
-const ROOM_NAME = 'observable-room';
+// const SCALEDRONE_KEY = 'S94RX9Gu8Xpy6oEx';
+// const ROOM_NAME = 'observable-room';
+
+const KEY = process.env.REACT_APP_SCALEDRONE_KEY;
+const ROOM = process.env.REACT_APP_ROOM_NAME;
 
 const ACTIONS = {
   MESSAGE: 'message',
@@ -102,7 +105,7 @@ export default function Chat() {
   const { drone, setDrone } = useContext(DroneContext);
 
   useEffect(() => {
-    const drone = new window.Scaledrone(SCALEDRONE_KEY, {
+    const drone = new window.Scaledrone(KEY, {
       data: user,
     });
     setDrone(drone);
@@ -113,7 +116,7 @@ export default function Chat() {
       drone.on('open', error => {
         if (error) return console.error(error);
 
-        const room = drone.subscribe(ROOM_NAME, {
+        const room = drone.subscribe(ROOM, {
           historyCount: 25,
         });
 
@@ -152,7 +155,7 @@ export default function Chat() {
 
   function sendMessage(message) {
     drone.publish({
-      room: ROOM_NAME,
+      room: ROOM,
       message: { message },
     });
   }
