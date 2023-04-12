@@ -20,6 +20,8 @@ export default function Header({ members, handleCloseChat }) {
   const { user, setUser } = useContext(UserContext);
   const { drone, setDrone } = useContext(DroneContext);
 
+
+
   function handleMembersList() {
     setShowMembers(prev => !prev);
   }

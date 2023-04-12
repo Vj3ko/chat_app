@@ -80,6 +80,7 @@
 
     &--color {
       border-radius: 50%;
+      background-color: aqua;
 
       @include width-height(0.625rem, 0.625rem);
     }
