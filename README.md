@@ -46,7 +46,7 @@ Start the app
   npm start
 ```
 
-[Live preview of a Chat App](https://chat-app-6p8.pages.dev/)
+[Live preview of a Chat App](https://chat-app-flax-alpha.vercel.app/)
 
 ## Author
 
