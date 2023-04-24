@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
@@ -100,17 +99,10 @@ export default function Chat() {
   const { drone, setDrone } = useContext(DroneContext);
 
   useEffect(() => {
-    const key = {
-      method: "GET",
-      url: "http://localhost:8000/key"
-    }
-
-    axios.request(key).then(res => {
-      const drone = new window.Scaledrone(res.data, {
-        data: user,
-      });
-      setDrone(drone);
-    })
+    const drone = new window.Scaledrone(process.env.REACT_APP_SCALEDRONE_KEY, {
+      data: user,
+    });
+    setDrone(drone);
   }, []);
 
   useEffect(() => {
