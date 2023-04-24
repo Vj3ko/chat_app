@@ -32,7 +32,7 @@ Go to the project directory
 ```
 
 Register on [Scaledrone](https://https://www.scaledrone.com/) service and get a KEY.
-Create .env file and add REACT_APP_SCALEDRONE_KEY={your key} and REACT_APP_ROOM_NAME={your room name}
+Create .env file and add REACT_APP_SCALEDRONE_KEY={your key}
 
 Install dependencies
 

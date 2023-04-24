@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
@@ -16,12 +17,6 @@ import Messages from './Messages/Messages';
 
 //Animations
 import { messagesVariant } from '../../AnimationVariants/index';
-
-// const SCALEDRONE_KEY = 'S94RX9Gu8Xpy6oEx';
-// const ROOM_NAME = 'observable-room';
-
-const KEY = process.env.REACT_APP_SCALEDRONE_KEY;
-const ROOM = process.env.REACT_APP_ROOM_NAME;
 
 const ACTIONS = {
   MESSAGE: 'message',
@@ -105,10 +100,17 @@ export default function Chat() {
   const { drone, setDrone } = useContext(DroneContext);
 
   useEffect(() => {
-    const drone = new window.Scaledrone(KEY, {
-      data: user,
-    });
-    setDrone(drone);
+    const key = {
+      method: "GET",
+      url: "http://localhost:8000/key"
+    }
+
+    axios.request(key).then(res => {
+      const drone = new window.Scaledrone(res.data, {
+        data: user,
+      });
+      setDrone(drone);
+    })
   }, []);
 
   useEffect(() => {
@@ -116,7 +118,7 @@ export default function Chat() {
       drone.on('open', error => {
         if (error) return console.error(error);
 
-        const room = drone.subscribe(ROOM, {
+        const room = drone.subscribe("observable-room", {
           historyCount: 25,
         });
 
@@ -155,7 +157,7 @@ export default function Chat() {
 
   function sendMessage(message) {
     drone.publish({
-      room: ROOM,
+      room: "observable-room",
       message: { message },
     });
   }
